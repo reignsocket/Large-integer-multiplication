@@ -20,3 +20,20 @@ In the following example program, unsigned an1[200] and unsigned an2[200] are us
 
 First calculate 835 × 9. 5 × 9 to get 45 1, 3 × 9 to get 27 10, 8 × 9 to get 72 100. Because there is no hurry
 After processing the carry, so after 835×9 is finished, the aResult is as follows:  
+![](https://github.com/reignsocket/Large-integer-multiplication/blob/master/1.png)
+Next count 4 × 5. Here the result of 4×5 represents 20 10, so to aResult[1]+=20, it becomes:  
+![](https://github.com/reignsocket/Large-integer-multiplication/blob/master/2.png)
+Then count down 4×3. Here, the result of 4×3 represents 12 100, so to aResult[2]+= 12, it becomes:  
+![](https://github.com/reignsocket/Large-integer-multiplication/blob/master/3.png)  
+Finally count 4 × 8. Here the result of 4×8 represents 32 1000, so to aResult[3]+= 32, it becomes:  
+![](https://github.com/reignsocket/Large-integer-multiplication/blob/master/4.png)  
+The multiplication process is complete. Next, from aResult[0], the carry problem is processed bit by bit from the high bit. aResult[0] leaves 5, adds 4 to aResult[1], after aResult[1] becomes 51, it should leave 1 and add 5 to aResult[2]... eventually make each in aResult The elements are all 1 digit and the result is calculated:  
+![](https://github.com/reignsocket/Large-integer-multiplication/blob/master/5.png)  
+Summarize a rule that the number of the ith bit of one number multiplied by the jth bit of another number must be added
+The i+j bit of the result. Here i, j are all from right to left, starting from 0.  
+  
+Implementation skills  
+It is not necessary to deal with the carry-in immediately, but to wait for all the results to be calculated and then process the carry-in. Sometimes it will be convenient.
+
+
+
